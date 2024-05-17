@@ -2,15 +2,13 @@ package com.esiee.gestionbibliotheque.dao;
 
 import com.esiee.gestionbibliotheque.config.ConnectionDatabase;
 import com.esiee.gestionbibliotheque.model.Book;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class DAOBook {
@@ -24,12 +22,13 @@ public class DAOBook {
     public DAOBook() {
     }
 
-   public  static void main (String[] args) {
+    public static void main(String[] args) {
         final Book b = new Book(1, "test");
         final DAOBook dao = new DAOBook(b);
-        List<Book> books =   DAOBook.listerParTitre("Fondation");
+        List<Book> books = DAOBook.listerParTitre("Fondation");
         System.out.println(books);
     }
+
     public static ArrayList<Book> listerParTitre(String titre) {
         final ArrayList<Book> arr = new ArrayList<Book>();
         try {
@@ -38,6 +37,26 @@ public class DAOBook {
 
             final PreparedStatement getbooksStatemnet = con.prepareStatement(str);
             getbooksStatemnet.setString(1, titre);
+
+            final ResultSet listPlanning = getbooksStatemnet.executeQuery();
+            while (listPlanning.next()) {
+                arr.add(new Book(listPlanning.getInt(1), listPlanning.getString(2)));
+            }
+            con.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver no charg\u00e9!");
+        } catch (SQLException ex) {
+        }
+        return arr;
+    }
+
+    public static ArrayList<Book> listeAll() {
+        final ArrayList<Book> arr = new ArrayList<Book>();
+        try {
+            final Connection con = ConnectionDatabase.con();
+            final String str = "SELECT * FROM livres";
+
+            final PreparedStatement getbooksStatemnet = con.prepareStatement(str);
 
             final ResultSet listPlanning = getbooksStatemnet.executeQuery();
             while (listPlanning.next()) {
