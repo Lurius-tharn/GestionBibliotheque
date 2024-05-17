@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionDatabase {
     public static final String CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     public static final String DB_USER = "root";
-    public static final String DB_PASSWORD = "password";
+    public static final String DB_PASSWORD = "dada2323";
     public static final String DB_URL = "jdbc:mysql://localhost:3306/gest_biblio";
 
     public static Connection con() throws ClassNotFoundException, SQLException {
