@@ -12,12 +12,15 @@ import java.util.List;
 public class SearchBookServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title = req.getParameter("title");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String title = request.getParameter("title");
+        String isbn = request.getParameter("isbn");
+        String author = request.getParameter("author");
+        String dispo = request.getParameter("dispo");
 
-        List<Book> books = DAOBook.listerParTitre(title);
-
-        req.setAttribute("books", books);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        List<Book> books = DAOBook.searchBooks(title, isbn, author, dispo != null && dispo.equals("1"));
+        request.setAttribute("books", books);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 }

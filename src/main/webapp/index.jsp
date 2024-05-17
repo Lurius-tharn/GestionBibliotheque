@@ -17,10 +17,17 @@
     <br/>
 
     <form action="SearchBookServlet" method="get">
-        <label for="title">Titre du livre:</label><br/>
-        <input type="text" id="title" name="title" required/><br/>
-        <br/>
-        <input type="submit" value="Chercher">
+        <label for="title">Book Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="author">Disponibilité</label><br>
+        <input type="checkbox" id="dispo" name="dispo" checked value="1">
+
+        <input type="submit" value="Search">
+
     </form>
 
     <%
@@ -30,15 +37,20 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>Nom</th>
+            <th>titre</th>
+            <th>Auteur</th>
+            <th>ISBN</th>
+            <th>Disponibilité</th>
+
         </tr>
-        <br/>
         <% for (Book book : books) { %>
         <tr>
-            <td><%= book.getId() %>
-            </td>
-            <td><%= book.getTitle() %>
-            </td>
+            <td><%= book.getId() %></td>
+            <td><%= book.getTitle() %></td>
+            <td><%= book.getAuthor() %></td>
+            <td><%= book.getIsbn() %></td>
+            <td><%= book.isAvailable() ? "Disponible" : "Emprunté" %></td>
+
         </tr>
         <% } %>
     </table>
