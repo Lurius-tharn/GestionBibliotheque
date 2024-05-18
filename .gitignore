@@ -37,4 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store!/src/main/java/com/esiee/gestionbibliotheque/config/ConnectionDatabase.java
 ConnectionDatabase.java
-./src/main/java/com/esiee/gestionbibliotheque/config/ConnectionDatabase.java
+./src/main/java/com/esiee/gestionbibliotheque/config/

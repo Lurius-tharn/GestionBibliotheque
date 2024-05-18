@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  mysqldb:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gest_biblio
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./src/main/ressources/db.sql:/docker-entrypoint-initdb.d/db.sql
+
+  tomcat:
+    build: .
+    container_name: tomcat
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+volumes:
+  mysql-data:
