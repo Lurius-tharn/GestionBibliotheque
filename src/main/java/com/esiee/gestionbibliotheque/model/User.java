@@ -9,6 +9,6 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class User {
     private Integer id;
-    private String nom;
+    private String name;
 
 }

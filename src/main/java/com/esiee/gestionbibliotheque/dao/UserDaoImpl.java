@@ -10,25 +10,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOUser {
-
-    private User user;
-
-    public DAOUser(final User u) {
-        this.user = u;
-    }
-
-    public DAOUser() {
-    }
-
-    public static void main(String[] args) {
-        final User u = new User(1, "prenom");
-        final DAOUser dao = new DAOUser(u);
-        List<User> users = DAOUser.listerParNom("Henry");
-        System.out.println(users);
-    }
-
-    public static ArrayList<User> listerParNom(String nom) {
+public class UserDaoImpl implements UserDao {
+    /**
+     * This method is used to find all users by their name.
+     * @param nom This is the name of the user.
+     * @return List<User> This returns a list of users with the given name.
+     */
+    public List<User> findAllBooksByName(String nom) {
         final ArrayList<User> arr = new ArrayList<User>();
         try {
             final Connection con = ConnectionDatabase.con();
@@ -48,14 +36,17 @@ public class DAOUser {
         }
         return arr;
     }
-
-    public void insert(User book) {
+    /**
+     * This method is used to insert a new user into the database.
+     * @param book This is the user to be inserted.
+     */
+    public void insertBook(User book) {
         try {
             final Connection con = ConnectionDatabase.con();
             final String str = "INSERT INTO users (nom) VALUES (?)";
 
             final PreparedStatement insertUserStatement = con.prepareStatement(str);
-            insertUserStatement.setString(1, book.getNom());
+            insertUserStatement.setString(1, book.getName());
 
             insertUserStatement.executeUpdate();
             con.close();

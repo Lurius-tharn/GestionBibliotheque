@@ -1,6 +1,7 @@
 package com.esiee.gestionbibliotheque.controller;
 
-import com.esiee.gestionbibliotheque.dao.DAOUser;
+import com.esiee.gestionbibliotheque.dao.UserDao;
+import com.esiee.gestionbibliotheque.dao.UserDaoImpl;
 import com.esiee.gestionbibliotheque.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,9 +17,10 @@ public class GetUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDao userDao = new UserDaoImpl();
         String nom = req.getParameter("nom");
 
-        List<User> users = DAOUser.listerParNom(nom);
+        List<User> users = userDao.findAllBooksByName(nom);
 
         req.setAttribute("users", users);
         req.getRequestDispatcher("index.jsp").forward(req, resp);

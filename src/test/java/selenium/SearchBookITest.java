@@ -1,3 +1,6 @@
+package selenium;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
@@ -11,7 +14,8 @@ import java.time.Duration;
 public class SearchBookITest {
 
     @Test
-    public void testSearchBook() {
+    @DisplayName("Search Book by Title")
+    public void searchBook_ByTitle_ContainsBookTitle() {
         WebDriver driver = new ChromeDriver();
         int time = 10;
         Duration duration = Duration.ofSeconds(time);
@@ -39,7 +43,8 @@ public class SearchBookITest {
     }
 
     @Test
-    public void testSearchByAuthor() {
+    @DisplayName("Search Book by Author")
+    public void searchBook_ByAuthor_ContainsAuthorName() {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -63,7 +68,8 @@ public class SearchBookITest {
     }
 
     @Test
-    public void testSearchByIsbn() {
+    @DisplayName("Search Book by ISBN")
+    public void searchBook_ByISBN_ContainsISBN() {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -86,8 +92,8 @@ public class SearchBookITest {
         }
     }
 
-    @Test
-    public void testSearchByAll() {
+    @DisplayName("Search Book by All Parameters")
+    public void searchBook_ByAllParameters_ContainsAllParameters() {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -116,5 +122,6 @@ public class SearchBookITest {
             driver.quit();
         }
     }
+
 }
 

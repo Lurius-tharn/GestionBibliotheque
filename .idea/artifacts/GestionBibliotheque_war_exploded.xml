@@ -58,6 +58,10 @@
           <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-support:4.20.0" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.16.1" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.14.15" />
+          <element id="library" level="project" name="Maven: io.github.cdimascio:java-dotenv:5.2.2" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
